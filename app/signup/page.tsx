@@ -22,7 +22,7 @@ import {
 import z from "zod";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import signup from '@/lib/signup';
+import { signup } from '@/lib/signup';
 
 // import { useState } from "react";
 

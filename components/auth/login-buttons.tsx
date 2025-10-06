@@ -14,10 +14,10 @@ export const LoginButtons = () => {
   });
   return (
     <>
-      <Button onClick={signinWithGithub} className='w-[45%]' variant='outline'>
+      <Button onClick={signinWithGithub} className='w-full max-w-md mx-auto' variant='outline'>
         github
       </Button>
-      <Button onClick={signinWithGoogle} className='w-[45%]' variant='outline'>
+      <Button onClick={signinWithGoogle} className='w-full max-w-md mx-auto' variant='outline'>
         google
       </Button>
     </>

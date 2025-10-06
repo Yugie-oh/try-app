@@ -3,7 +3,7 @@
 import { auth } from '@/lib/auth'
 import { APIError } from 'better-auth/api'
 
-export default async function signup(formData: FormData) {
+export async function signup(formData: FormData) {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -19,6 +19,25 @@ export default async function signup(formData: FormData) {
   } catch (error) {
     if (error instanceof APIError) {
       console.log('API Error:', error.message);
+    }
+  }
+}
+
+export async function signin(formData: FormData) {
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+  try {
+    await auth.api.signInEmail({
+      body: {
+        email,
+        password
+      }
+    })
+    return {success: true};
+  } catch (error) {
+    if (error instanceof APIError) {
+      console.log('API Error:', error.message);
+      return { success: false, error: error.message };
     }
   }
 }
