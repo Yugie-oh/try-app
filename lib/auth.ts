@@ -5,9 +5,18 @@ import { db } from "@/db";
 
 export const auth = betterAuth({
   //...other options
-  // emailAndPassword: {
-  //   enabled: true,
-  // },
+  emailVerification: {
+    sendVerificationEmail: async ({url, user}) => {
+      await sendEmail(url, user)
+    },
+  },
+  emailAndPassword: {
+    enabled: true,
+    autoSignIn: false,
+    minPasswordLength: 6,
+    maxPasswordLength: 100,
+    requireEmailVerification: true,
+  },
   database: drizzleAdapter(db, {
     provider: "pg", // or "pg" or "mysql"
   }),
