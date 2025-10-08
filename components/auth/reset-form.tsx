@@ -27,7 +27,7 @@ export function ResetForm() {
   })
 
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
+  const token = searchParams.get('token') || '';
   console.log('token', token)
   const [state, formAction] = useActionState(
      (prevState: { success: boolean } | undefined, formData: FormData) =>
@@ -62,7 +62,7 @@ export function ResetForm() {
   }
   return (
     <Card className="w-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
-      <CardHeader>
+      <CardHeader className='px-0'>
       <CardTitle className="text-2xl font-bold mb-2">Reset password</CardTitle>
       <CardDescription className="text-gray-500">An email will be sent to the provided email address.</CardDescription>
       </CardHeader>
@@ -118,14 +118,14 @@ export function ResetForm() {
           </Button>
           {state?.success && (
             <div className="mt-1 flex justify-center text-center">
-              <span className="px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
+              <span className="w-full px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
                 Reset successful! Redirecting...
               </span>
             </div>
           )}
           {state?.error && (
             <div className="mt-1 flex justify-center text-center">
-              <span className="px-4 py-2 rounded-lg bg-red-100 text-red-700 font-medium shadow-sm border border-red-300">
+              <span className="w-full px-4 py-2 rounded-lg bg-red-100 text-red-700 font-medium shadow-sm border border-red-300">
                 {state?.error}
               </span>
             </div>

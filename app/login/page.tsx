@@ -9,7 +9,7 @@ export default async function LoginPage() {
   if (session) redirect('/home');
 
   return (
-    <div className='flex flex-col justify-center items-center gap-4'>
+    <div className='flex flex-col w-full min-h-screen justify-center items-center gap-4'>
       <LoginButtons/>
       <LoginForm/>
       <Link href="/forgot-password">Forgot password</Link>

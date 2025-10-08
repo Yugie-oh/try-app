@@ -59,93 +59,99 @@ export default function SignupPage() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold mb-2">Register</CardTitle>
-        <CardDescription className="text-gray-500">
-          Create a new account by filling out the form below.
-        </CardDescription>
-      </CardHeader>
-      <Form {...form}>
-        <form action={formAction} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-semibold">Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Your name..."
-                    type="text"
-                    autoComplete="email"
-                    className="focus:ring-2 focus:ring-blue-500"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  This is your name used for registration.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
+    <div className="flex w-full min-h-screen justify-center items-center">
+      <Card className="w-full h-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
+        <CardHeader className='px-0'>
+          <CardTitle className="text-2xl font-bold mb-2">Register</CardTitle>
+          <CardDescription className="text-gray-500">
+            Create a new account by filling out the form below.
+          </CardDescription>
+          <CardDescription className="text-gray-500">
+            An email will be sent to the provided email address for verification,
+            <strong><i> you will need to verify before you can login.</i></strong>
+          </CardDescription>
+        </CardHeader>
+        <Form {...form}>
+          <form action={formAction} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold">Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Your name..."
+                      type="text"
+                      autoComplete="email"
+                      className="focus:ring-2 focus:ring-blue-500"
+                      {...field}
+                    />
+                  </FormControl>
+                  {/* <FormDescription>
+                    This is your name used for registration.
+                  </FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold">Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="johndoe@gmail.com"
+                      type="email"
+                      autoComplete="email"
+                      className="focus:ring-2 focus:ring-blue-500"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This email address will be used for registration and login.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold">Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your password"
+                      type="password"
+                      autoComplete="current-password"
+                      className="focus:ring-2 focus:ring-blue-500"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Your password must be at least 8 characters long.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <ButtonWithLoader />
+            {state?.success && (
+              <div className="mt-1 flex justify-center text-center">
+                <span className="w-full px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
+                  Registration successful! Please check your email for
+                  confirmation.
+                </span>
+              </div>
             )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-semibold">Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="johndoe@gmail.com"
-                    type="email"
-                    autoComplete="email"
-                    className="focus:ring-2 focus:ring-blue-500"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  This is your email address used for registration.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-semibold">Password</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your password"
-                    type="password"
-                    autoComplete="current-password"
-                    className="focus:ring-2 focus:ring-blue-500"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  Your password must be at least 6 characters long.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <ButtonWithLoader />
-          {state?.success && (
-            <div className="mt-1 flex justify-center text-center">
-              <span className="px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
-                Registration successful! Please check your email for
-                confirmation.
-              </span>
-            </div>
-          )}
-        </form>
-      </Form>
-    </Card>
+          </form>
+        </Form>
+      </Card>
+    </div>
   );
 }
 
