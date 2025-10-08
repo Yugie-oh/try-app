@@ -1,15 +1,15 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Card,  CardDescription,  CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "@/components/ui/form"
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import z from "zod"
 import { passwordReset } from "@/lib/password-reset"
 import { useActionState, useState } from "react"
 import { useRouter, useSearchParams } from 'next/navigation'
+import ButtonWithLoader from '../custom/button-with-loader'
 
 const formSchema = z.object({
   password: z.string().min(8),
@@ -55,11 +55,13 @@ export function ResetForm() {
     }
     // Form will submit normally if validation passes
   };
+
   if (state?.success) {
     setTimeout(() => {
       router.push('/login')
     }, 1000);
   }
+
   return (
     <Card className="w-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
       <CardHeader className='px-0'>
@@ -113,9 +115,12 @@ export function ResetForm() {
 
           {passwordError && <p className="text-red-500">{passwordError}</p>}
 
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded">
+          <ButtonWithLoader
+            loadingText="Processing..."
+          >
             Change password
-          </Button>
+          </ButtonWithLoader>
+
           {state?.success && (
             <div className="mt-1 flex justify-center text-center">
               <span className="w-full px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">

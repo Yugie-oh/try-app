@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -21,9 +20,9 @@ import {
 } from "@/components/ui/form";
 import z from "zod";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
 import { signUp } from '@/lib/sign-up';
 import { useRouter } from 'next/navigation';
+import ButtonWithLoader from '@/components/custom/button-with-loader';
 
 // import { useState } from "react";
 
@@ -88,9 +87,6 @@ export default function SignupPage() {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>
-                    This is your name used for registration.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -139,7 +135,13 @@ export default function SignupPage() {
                 </FormItem>
               )}
             />
-            <ButtonWithLoader />
+
+            <ButtonWithLoader
+              loadingText="Processing..."
+            >
+              Register
+            </ButtonWithLoader>
+
             {state?.success && (
               <div className="mt-1 flex justify-center text-center">
                 <span className="w-full px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
@@ -152,18 +154,5 @@ export default function SignupPage() {
         </Form>
       </Card>
     </div>
-  );
-}
-
-function ButtonWithLoader() {
-  const { pending } = useFormStatus();
-  return (
-    <Button
-      type="submit"
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded"
-      disabled={pending}
-    >
-      {pending ? "Registering..." : "Register"}
-    </Button>
   );
 }

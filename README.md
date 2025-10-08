@@ -34,3 +34,46 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+<!-- // {/* // Login button */}
+// <ButtonWithLoader
+//   loadingText="Signing in..."
+//   className="bg-green-600 hover:bg-green-700"
+// >
+//   Sign In
+// </ButtonWithLoader>
+
+// {/* // Save button */}
+// <ButtonWithLoader
+//   loadingText="Saving..."
+//   className="bg-purple-600 hover:bg-purple-700 px-6"
+// >
+//   Save Changes
+// </ButtonWithLoader>
+
+// {/* // Delete button with custom styling */}
+// <ButtonWithLoader
+//   loadingText="Deleting..."
+//   className="bg-red-600 hover:bg-red-700 w-auto px-4"
+// >
+//   Delete Account
+// </ButtonWithLoader>
+
+// {/* // Custom button type */}
+// <ButtonWithLoader
+//   type="button"
+//   loadingText="Processing..."
+//   disabled={true}
+// >
+//   Process Data
+// </ButtonWithLoader>
+// <ButtonWithLoader
+//   type="button"
+//   loadingText="Processing..."
+//   disabled={false}
+// >
+//   Button
+// </ButtonWithLoader> -->

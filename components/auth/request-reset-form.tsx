@@ -9,13 +9,14 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, For
 import z from "zod"
 import { requestPasswordReset } from "@/lib/request-password-reset"
 import { useActionState } from "react"
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import ButtonWithLoader from '../custom/button-with-loader'
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
 })
 export function RequestResetForm() {
-  const router = useRouter();
+  // const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,6 +36,7 @@ export function RequestResetForm() {
   //     router.push('/login')
   //   }, 1000);
   // }
+
   return (
     <Card className="w-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
       <CardHeader className='px-0'>
@@ -63,9 +65,12 @@ export function RequestResetForm() {
         )}
         />
 
-        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded">
-        Reset password
-        </Button>
+        <ButtonWithLoader
+          loadingText="Processing..."
+        >
+          Reset password
+        </ButtonWithLoader>
+
         {state?.success && (
           <div className="mt-1 flex justify-center text-center">
             <span className="w-full px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium shadow-sm border border-green-300">
