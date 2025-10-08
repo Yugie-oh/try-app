@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { headers } from 'next/headers';
 import { db } from "@/db";
 import { nextCookies } from 'better-auth/next-js';
-import { sendEmail } from '@/email/send-email';
+import { verificationEmail, requestResetPasswordEmail } from '@/email/send-email';
 
 export const auth = betterAuth({
   //...other options
@@ -12,7 +12,7 @@ export const auth = betterAuth({
   }),
   emailVerification: {
     sendVerificationEmail: async ({url, user}) => {
-      await sendEmail(url, user)
+      await verificationEmail(url, user)
     },
   },
   emailAndPassword: {
@@ -21,6 +21,13 @@ export const auth = betterAuth({
     minPasswordLength: 6,
     maxPasswordLength: 100,
     requireEmailVerification: true,
+    sendResetPassword: async ({user, url, token}, request) => {
+      await requestResetPasswordEmail(url, user);
+    },
+    onPasswordReset: async ({ user }, request) => {
+      // your logic here
+      console.log(`Password for user ${user.email} has been reset.`);
+    },
   },
   pages: {
     signIn: '/login',

@@ -1,7 +1,5 @@
-import { LoginButtons } from '@/components/auth/login-buttons';
-import { LoginForm } from '@/components/auth/login-form';
+import { RequestResetForm } from '@/components/auth/request-reset-form';
 import { getSession } from '@/lib/auth';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default async function LoginPage() {
@@ -10,9 +8,7 @@ export default async function LoginPage() {
 
   return (
     <div className='flex flex-col justify-center items-center gap-4'>
-      <LoginButtons/>
-      <LoginForm/>
-      <Link href="/forgot-password">Forgot password</Link>
+      <RequestResetForm/>
     </div>
   );
 }

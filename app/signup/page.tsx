@@ -22,7 +22,8 @@ import {
 import z from "zod";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { signup } from '@/lib/signup';
+import { signUp } from '@/lib/sign-up';
+import { useRouter } from 'next/navigation';
 
 // import { useState } from "react";
 
@@ -32,6 +33,7 @@ const formSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 export default function SignupPage() {
+  const router = useRouter();
 
   //   const [successMessage, setSuccessMessage] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,10 +47,16 @@ export default function SignupPage() {
 
   const [state, formAction] = useActionState(
      (prevState: { success: boolean } | undefined, formData: FormData) =>
-      signup(formData),
+      signUp(formData),
     { success: false }
 
   )
+
+  if (state?.success) {
+    setTimeout(() => {
+      router.push('/home')
+    }, 1000);
+  }
 
   return (
     <Card className="w-full max-w-md mx-auto p-6 shadow-lg rounded-lg">
