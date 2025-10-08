@@ -21,10 +21,10 @@ export const auth = betterAuth({
     minPasswordLength: 6,
     maxPasswordLength: 100,
     requireEmailVerification: true,
-    sendResetPassword: async ({user, url, token}, request) => {
+    sendResetPassword: async ({user, url}) => {
       await requestResetPasswordEmail(url, user);
     },
-    onPasswordReset: async ({ user }, request) => {
+    onPasswordReset: async ({ user }) => {
       // your logic here
       console.log(`Password for user ${user.email} has been reset.`);
     },
